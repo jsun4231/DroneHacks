@@ -10,6 +10,12 @@ DroneHacks is a drone simulation/hacking hackathon project.
 
 Area ownership is not yet assigned — see docs/BOARD.md owners table. This file's area list grows as code lands; do not add areas here speculatively.
 
+**Code preloaded on the drone:** `drone-snapshot.zip` is the existing code that came preloaded on the drone's Jetson. Treat it as the reference for what is already on the drone. It is not in this repo: @jsun4231 holds it at `C:\Users\zsun\Downloads\drone-snapshot.zip` (captured 2026-11-06, SHA-256 `f44b5788f9e99615837e8cce65d363153789f82bdb36be8131c77a03702e175e`). Ask @jsun4231 for a copy. It contains:
+
+- `home/dronehacks/skybeta/`: the organizer-supplied stack, `skybeta` `VERSION` 0.3.2. Its README names the upstream as `Artash-N/skybeta`, branch `fleet-ready`. Its `README.md` and `docs/competitor_guide.md` describe the interfaces and on-drone rules.
+- `home/dronehacks/team_ws/src/`: empty. Team code goes here on the drone.
+- `etc/skybeta/drone.env`: per-drone identity and launch settings.
+
 ## §2 Scope & review
 
 - State the files/dirs you intend to change before editing.
@@ -26,8 +32,9 @@ A reviewer may cite any invariant by number (e.g. "§3.4").
 3. **Never force-push, rewrite `main`, or destroy another contributor's uncommitted work.** Revert bad merges via a new PR.
 4. **Every PR goes through docs/BOARD.md's label lifecycle before merge.** There is no out-of-band merge.
 5. **Escalate to a human (`needs-human` label + assignee) rather than guessing on:** spend, production/deployment actions, security-relevant guard changes, or any cross-area contract break.
+6. **Acro mode is not allowed.** No code, launch file, PX4 parameter or flight-mode mapping may command, enable or fall back to PX4 Acro mode (`ACRO`, nav_state 10). Set by @jsun4231, 2026-11-06.
 
-Invariants 6–7 are reserved for real constraints that emerge once code and areas exist. Do not invent entries here.
+Invariant 7 is reserved for a real constraint that emerges once code and areas exist. Do not invent entries here.
 
 ## §4 Tech conventions
 
